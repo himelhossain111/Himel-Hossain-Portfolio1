@@ -210,7 +210,7 @@
             animation: fadeUp 0.8s ease forwards 0.5s;
         }
 
-        /* --- MODIFIED: NAME IN RANDOM COLOR ANIMATION (ALWAYS VISIBLE) --- */
+        /* --- RAINBOW NAME ANIMATION --- */
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 20px;
@@ -218,60 +218,30 @@
             font-family: var(--font-heading);
             font-weight: 700;
             
-            /* Setup for Gradient Text Animation */
-            color: transparent; /* Text itself is transparent, background provides the color */
+            color: transparent; 
             background-image: linear-gradient(
                 45deg, 
                 #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000
             );
-            background-size: 400% 400%; /* Large size for movement */
+            background-size: 400% 400%; 
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             
-            /* Animation: Infinite Color Cycle */
-            animation: rainbowAnim 3s linear infinite;
+            animation: fadeUp 0.8s ease forwards 0.7s, rainbowAnim 3s linear infinite; 
             
-            /* Text Shadow/Glow */
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            
-            /* Initial Fade In */
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards 0.7s, rainbowAnim 3s linear infinite; /* Compose animations */
         }
         
-        /* Define the Rainbow Animation */
         @keyframes rainbowAnim {
             0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
+            50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Optional: Keep Glitch on Hover */
         .hero-content h1:hover { 
-            animation-play-state: paused, rainbowAnim; 
-        }
-        .hero-content h1:hover::before {
-            content: '𝓜𝓓. H𝓲𝓶𝓮𝓵 𝓗𝓸𝓼𝓼𝓼𝓪𝓲𝓷';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: inherit;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            z-index: 10;
-            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; 
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); clip-path: inset(40% 0 61% 0); }
-            20% { transform: translate(-2px, 2px); clip-path: inset(40% 0 61% 0); }
-            40% { transform: translate(-2px, -2px); clip-path: inset(40% 0 61% 0); }
-            60% { transform: translate(2px, 2px); clip-path: inset(40% 0 61% 0); }
-            80% { transform: translate(2px, -2px); clip-path: inset(40% 0 61% 0); }
-            100% { transform: translate(0); clip-path: inset(40% 0 61% 0); }
+            animation-play-state: paused; 
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
         }
 
         .typewriter {
@@ -468,7 +438,7 @@
         }
         .info-item i { color: var(--primary); font-size: 1.2rem; }
 
-        /* --- TIMELINE & RAINBOW BULLETS --- */
+        /* --- TIMELINE --- */
         .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 0; list-style: none; }
         .timeline::before {
             content: ''; position: absolute; left: 20px; top: 0; height: 100%; width: 2px;
@@ -496,25 +466,6 @@
             font-family: var(--font-heading); letter-spacing: 1px; 
         }
         .timeline-item ul { margin-top: 15px; list-style: none; }
-        .timeline-item li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-            color: #aaa;
-            font-size: 1rem;
-        }
-        
-        /* UNIVERSAL RAINBOW ARROW STYLE */
-        .timeline-item li::before {
-            content: '➤'; /* Heavy Triangle Arrow */
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 0.9rem;
-            color: #ff0000; /* Base Red */
-            /* Moving Random Color Animation */
-            animation: hueRotateAnim 4s linear infinite;
-        }
 
         /* --- TRAINING GRID --- */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
@@ -548,21 +499,16 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 30px; 
         }
-
-        /* Allow to span 2 columns on desktop for space */
-        @media (min-width: 992px) {
-            .span-2 { grid-column: span 2; }
-        }
+        @media (min-width: 992px) { .span-2 { grid-column: span 2; } }
 
         .skill-box { text-align: left; }
         .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .skill-header h3 { font-size: 1rem; color: #fff; }
         .skill-header i { color: var(--secondary); font-size: 1.2rem; }
-        .progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+        .progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 15px;}
         .progress-bar { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); width: 0; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1); }
         
-        /* --- RAINBOW LISTS (APPLIES TO ALL POINTS) --- */
-        /* Applies to Experience, Technical Skills, Personal Strength, Language, Interests */
+        /* --- RAINBOW LISTS --- */
         .rainbow-list {
             list-style: none;
             padding: 0;
@@ -583,23 +529,18 @@
             padding-left: 30px;
         }
 
-        /* THE ARROW (THE BULLET) WITH MOVING RANDOM COLOR */
         .rainbow-list li::before {
-            content: '➤'; /* Solid Heavy Triangle Arrow */
+            content: '➤'; 
             position: absolute;
             left: 0;
             top: 2px;
             font-size: 1rem;
-            /* Base color needed for hue-rotate to work effectively */
             color: #ff0000; 
-            /* The Animation */
             animation: hueRotateAnim 4s linear infinite;
         }
 
-        /* RANDOMIZER: Stagger delays and durations */
         .rainbow-list li:nth-child(odd) { animation-delay: 0.5s; }
         .rainbow-list li:nth-child(even) { animation-delay: 1.5s; }
-        
         .rainbow-list li:nth-child(3n) { animation-duration: 3s; }
         .rainbow-list li:nth-child(3n+1) { animation-duration: 5s; }
 
@@ -753,8 +694,7 @@
         <div class="hero-layout">
             <div class="hero-content">
                 <h2>HELLO, I AM</h2>
-                <!-- MODIFIED: Always Visible Random Color Animation -->
-                <h1>𝓜𝓓. H𝓲𝓶𝓮𝓵 𝓗𝓸𝓼𝓼𝓼𝓪𝓲𝓷</h1>
+                <h1>𝙈𝘿. 𝙃𝙄𝙈𝙀𝙇 𝙃𝙊𝙎𝙎𝘼𝙄𝙉</h1>
                 <div class="typewriter">
                     I am a <span id="typing-text"></span><span class="cursor">&nbsp;</span>
                 </div>
@@ -766,6 +706,7 @@
 
             <div class="photo-container">
                 <div class="photo-wrapper">
+                    <!-- Using the user's image with a Picsum fallback -->
                     <img src="https://z-cdn-media.chatglm.cn/files/8efb610a-1100-4551-830a-ebf2bd2e4e02.jpeg?auth_key=1869838856-1490834ce5cc4f4bbb8d2c39b10652c4-0-3d874de39b3b92f7a92d9735c8593b23" alt="Md. Himel Hossain" class="profile-img" onerror="this.src='https://picsum.photos/seed/himel/300/300'">
                     <div class="spin-ring"></div>
                 </div>
@@ -801,7 +742,6 @@
                 <span class="date"><i class="far fa-calendar-alt"></i> Nov 12, 2017 - Continuing</span>
                 <h3>Executive – Store Management</h3>
                 <h4>Step Media Ltd</h4>
-                <!-- CHANGED: To Universal Rainbow List -->
                 <ul class="rainbow-list">
                     <li>Supervise daily store operations, ensuring seamless inventory flow and maintaining accurate stock levels.</li>
                     <li>Administer and update ERP-based inventory systems to optimize supply chain efficiency and streamline delivery tracking.</li>
@@ -883,14 +823,13 @@
         <h2 class="section-title fade-in-up">Skills & Interests</h2>
         <div class="skills-grid">
             
-            <!-- TECHNICAL SKILLS (UPDATED WITH NEW LIST) -->
+            <!-- TECHNICAL SKILLS -->
             <div class="skill-box fade-in-up span-2">
                 <div class="skill-header">
                     <h3>Technical & Professional Skills</h3>
                     <i class="fas fa-briefcase"></i>
                 </div>
                 <div class="progress-track"><div class="progress-bar" data-width="95%"></div></div>
-                <!-- CHANGED: To Rainbow List -->
                 <ul class="rainbow-list">
                     <li>AI Prompt Engineering</li>
                     <li>AI Tool Proficiency</li>
@@ -912,7 +851,6 @@
                     <i class="fas fa-user-tie"></i>
                 </div>
                 <div class="progress-track"><div class="progress-bar" data-width="95%"></div></div>
-                <!-- CHANGED: To Rainbow List -->
                 <ul class="rainbow-list">
                     <li>Quick learner</li>
                     <li>Time management</li>
@@ -927,28 +865,26 @@
                 </ul>
             </div>
 
-            <!-- LANGUAGE (UPDATED TO RAINBOW LIST) -->
+            <!-- LANGUAGE -->
             <div class="skill-box fade-in-up">
                 <div class="skill-header">
                     <h3>Language</h3>
                     <i class="fas fa-language"></i>
                 </div>
                 <div class="progress-track"><div class="progress-bar" data-width="85%"></div></div>
-                <!-- CHANGED: To Rainbow List -->
                 <ul class="rainbow-list">
                     <li>Bengali (Native)</li>
                     <li>English (Good)</li>
                 </ul>
             </div>
             
-            <!-- INTERESTS (ALREADY RAINBOW LIST) -->
+            <!-- INTERESTS -->
             <div class="skill-box fade-in-up">
                 <div class="skill-header">
                     <h3>Interests</h3>
                     <i class="fas fa-heartbeat"></i>
                 </div>
                 <div class="progress-track"><div class="progress-bar" data-width="100%"></div></div>
-                <!-- Rainbow List -->
                 <ul class="rainbow-list">
                     <li>Playing</li>
                     <li>AI learning</li>
@@ -1055,9 +991,7 @@
 
         function downloadCV(e) {
             e.preventDefault();
-            // Simulate download action
             showToast('Downloading CV...', 'success');
-            // In real scenario: window.location.href = 'path/to/cv.pdf';
         }
 
         // --- TYPEWRITER EFFECT ---
@@ -1178,7 +1112,7 @@
         menuBtn.addEventListener('click', toggleMenu);
         mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        // --- OPTIMIZED CANVAS PARTICLE ANIMATION ---
+        // --- COMPLETED CANVAS PARTICLE ANIMATION ---
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particlesArray;
@@ -1191,6 +1125,11 @@
             mouse.y = event.y; 
         });
 
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        })
+
         // Resize Canvas
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -1199,7 +1138,7 @@
         }
         window.addEventListener('resize', resizeCanvas);
 
-        // Particle Class
+        // Particle Class (Completed from cut-off)
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
                 this.x = x;
@@ -1210,6 +1149,7 @@
                 this.color = color;
             }
 
+            // Method to draw individual particle
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
@@ -1217,8 +1157,9 @@
                 ctx.fill();
             }
 
+            // Check particle position, check mouse position, move the particle, draw the particle
             update() {
-                // Check boundaries
+                // Check if particle is still within canvas
                 if (this.x > canvas.width || this.x < 0) {
                     this.directionX = -this.directionX;
                 }
@@ -1226,12 +1167,12 @@
                     this.directionY = -this.directionY;
                 }
 
-                // Mouse collision detection
+                // Check collision detection - mouse position / particle position
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx*dx + dy*dy);
 
-                if (distance < mouse.radius + this.size) {
+                if (distance < mouse.radius + this.size){
                     if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
                         this.x += 10;
                     }
@@ -1249,36 +1190,48 @@
                 // Move particle
                 this.x += this.directionX;
                 this.y += this.directionY;
-
+                
+                // Draw particle
                 this.draw();
             }
         }
 
-        // Initialize Particles
+        // Create particle array
         function initParticles() {
             particlesArray = [];
-            // Number of particles based on screen size
+            // Calculate number of particles based on screen size
             let numberOfParticles = (canvas.height * canvas.width) / 9000;
             
             for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1; // Random size
-                let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 2) - 1; // Speed
-                let directionY = (Math.random() * 2) - 1;
-                let color = '#00f3ff'; // Cyan color matches theme
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                let color = '#00f3ff'; // Cyan
 
                 particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
         }
 
-        // Connect Particles with Lines
+        // Animation Loop
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        // Connect particles with lines if close enough
         function connect() {
             let opacityValue = 1;
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
                     let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                        + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                     
                     if (distance < (canvas.width/7) * (canvas.height/7)) {
                         opacityValue = 1 - (distance/20000);
@@ -1293,23 +1246,10 @@
             }
         }
 
-        // Animation Loop
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-            connect();
-        }
-
-        // Start Animation
+        // Initialize everything
         resizeCanvas();
-        animate();
-
-        // Start Typewriter
-        document.addEventListener('DOMContentLoaded', type);
+        animateParticles();
+        type(); // Start typewriter
     </script>
 </body>
 </html>
